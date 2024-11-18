@@ -127,7 +127,7 @@ def step_impl(context, name):
 
 @then('I should see the message "{message}"')
 def step_impl(context, message):
-    try:
+   
         found = WebDriverWait(context.driver, context.wait_seconds).until(
             expected_conditions.text_to_be_present_in_element(
                 (By.ID, 'flash_message'),
@@ -135,10 +135,6 @@ def step_impl(context, message):
             )
         )
         assert(found)
-    except TimeoutException:
-        context.driver.save_screenshot('timeout_error.png')
-        print("Page Source at Timeout:\n", context.driver.page_source)
-        raise
 
 ##################################################################
 # This code works because of the following naming convention:
